@@ -17,6 +17,10 @@ h2 {
   padding-bottom: 50px;
 }
 
+.logo-img {
+  height: 70px;
+}
+
 /* Header */
 .header {
   display: flex;
