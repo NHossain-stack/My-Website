@@ -32,3 +32,34 @@ const animateOnScroll = () => {
 
 window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
+
+const toggleButton = document.getElementById('darkToggle');
+const elementsToToggle = [
+  document.body,
+  document.querySelector('.header'),
+  document.querySelector('.footer'),
+  ...document.querySelectorAll('.section'),
+  ...document.querySelectorAll('.card'),
+  ...document.querySelectorAll('.item'),
+  ...document.querySelectorAll('.nav ul li a')
+];
+
+// Function to update button icon
+function updateButtonIcon() {
+  const isDark = document.body.classList.contains('dark-mode');
+  toggleButton.textContent = isDark ? '☀️' : '🌙';
+}
+
+// Load saved mode
+if (localStorage.getItem('theme') === 'dark') {
+  elementsToToggle.forEach(el => el.classList.add('dark-mode'));
+  updateButtonIcon();
+}
+
+// Toggle dark mode on click
+toggleButton.addEventListener('click', () => {
+  elementsToToggle.forEach(el => el.classList.toggle('dark-mode'));
+  const isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  updateButtonIcon();
+});
